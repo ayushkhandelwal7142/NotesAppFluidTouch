@@ -32,14 +32,14 @@ class HomeViewModel(
     val isSearchActive = _isSearchActive.asStateFlow()
 
     val filteredCovers = searchQuery.combine(coversList) { query, list ->
-        filterItemUseCase.invoke(
+        filterItemUseCase(
             query = query,
             list = list,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     val filteredPapers = searchQuery.combine(papersList) { query, list ->
-        filterItemUseCase.invoke(
+        filterItemUseCase(
             query = query,
             list = list
         )
